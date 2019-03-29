@@ -24,7 +24,7 @@ class Dog extends Animal {
 	}
 	public void eat(Food food) {
 		setName("骨头");
-		System.out.println("dog正在吃着香喷喷的 "+getName());
+		System.out.println("小狗       正在吃着香喷喷的 "+getName());
 	}
 }
 class Tiger extends Animal{
