@@ -1,7 +1,6 @@
 package airplane;
 
-import java.io.BufferedReader;
-import java.io.IOException;
+import java.io.*;
 
 public class Client {
 	private String flightName=null;//航班名
@@ -61,7 +60,7 @@ public class Client {
 						cancleCommand(cmds);
 				}else if(cmd.equals("list")) {
 					if(flightName!=null)
-						listCommand(cmds)
+						listCommand(cmds);
 				}else if(cmd.equals("exit")) {
 					System.out.println("感谢预订，再见！");
 					System.exit(0);
