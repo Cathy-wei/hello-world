@@ -1,7 +1,7 @@
 package airplane;
 
 public class Flight implements FlightInterface{
-	private String flightNmae;//航班名
+	private String flightName;//航班名
 	private int row;//座位排数
 	private int rowLength;//每排座位数
 	private int[] fail= {-1};//返回预订号
@@ -11,7 +11,7 @@ public class Flight implements FlightInterface{
 		if(FlightName==null || FlightName.trim().length()==0 || rows<=0 || rowLength<=0)
 			throw new Exception("Error!");
 		else {
-			this.flightNmae=FlightName;
+			this.flightName=FlightName;
 			this.row=rows;
 			this.rowLength=rowLength;
 			this.passengerList=new Passenger[row*rowLength];//创建航班座位

@@ -9,7 +9,7 @@ public class Client {
 	private int rowLength=0;//每排座位个数
 	private Flight flight=null;//本次航班对象
 	private String cmdString=null;//命令字符串
-	private BufferedReader br=new BufferedReader(new InputStremReader(System.in));//获取控制台命令
+	private BufferedReader br=new BufferedReader(new InputStreamReader(System.in));//获取控制台命令
 //--------------------主方法，程序入口--------------------//
 	public static void main(String[] args) {
 		new Flight().commandShell();//命令shell
@@ -84,7 +84,7 @@ public class Client {
     	cmd=cmdStr.split(" ");
     	return cmd;
     }
-//------------创建航班-----------//  
+//----------------------创建航班---------------------//  
     private int readInt(String valstr) {//把字符串类型转换为整型
     	int val=0;
     	try {
@@ -144,8 +144,8 @@ public class Client {
     		System.out.println("\n取消航班命令格式错误 QAQ");
     		return;
     	}
-    	int bookingNumeber=readInt(cmds[i]);
-    	if(bookingNumeber<=0) {
+    	int bookingNumber=readInt(cmds[1]);
+    	if(bookingNumber<=0) {
     		System.out.println("取消航班命令顺序错误 QAQ");
     		return;
     	}
@@ -158,9 +158,36 @@ public class Client {
     }
 //--------------------显示航班座位预订情况--------------------//
     private void listCommand(String[] cmds) {
-	// TODO 自动生成的方法存根
-	
+	if(cmds.length!=1) {
+		System.out.println("\n列表格式错误！");
+		return;
+	}
+	Passenger[]Passengerlist=flight.getPassengerList();
+	int flag=0;
+	System.out.println("姓名            预订号            行数           位置 ");
+	System.out.println("------------------------------------");
+	if(Passengerlist==null||Passengerlist.length<=0)
+		System.out.println("当前没有人预订座位！");
+	else {
+		flag=0;
+		for(int b=0;b<Passengerlist.length;b++) {
+			if(Passengerlist[b]!=null) {
+				flag=1;
+				System.out.println(formatStr(Passengerlist[b].getName())+
+						formatStr(""+Passengerlist[b].getBookingNumber())+
+						formatStr(""+Passengerlist[b].getRow())+
+						formatStr(""+Passengerlist[b].getSeatPosition()));
+			}
+		}
+		if(flag==0)
+			System.out.println("当前没有人预订座位！");
+	}
 }
+	private String formatStr(String s) {
+		for(int i=0;i<16-s.trim().length();i++)
+			s+="";
+		return s;
+	}
 
 	
 
