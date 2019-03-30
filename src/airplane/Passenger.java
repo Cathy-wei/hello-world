@@ -5,7 +5,7 @@ public class Passenger implements  PassengerInterface{
 	private int bookingNumber;
 	private int rows;
 	private int seatPosition;
-//Passenger类构造方法
+//Passenger类构造方法，初始化
 	public Passenger(String names,int bookingNumber,int rows,int seatPosition) {
 		 this.names=names;
 		 this.bookingNumber=bookingNumber;
