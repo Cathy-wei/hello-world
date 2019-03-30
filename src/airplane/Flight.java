@@ -46,17 +46,20 @@ public class Flight implements FlightInterface{
 			}
 			return bn;
 	}
-	@Override
+//--------------------取消预定--------------------//
 	public boolean cancle(int bookingNumber) {
-		// TODO 自动生成的方法存根
-		return false;
+		boolean Status = false;
+		for(int i=0;i<row*rowLength;i++) {
+			if(passengerList[i]!=null && bookingNumber==passengerList[i].getBookingNumber()) {
+				Status=true;
+				passengerList[i]=null;
+				break;
+			}
+		}
+		return Status;
 	}
-	@Override
+//--------------------返回旅客列表--------------------//
 	public Passenger[] getPassengerList() {
-		// TODO 自动生成的方法存根
-		return null;
+		return passengerList;
 	}
-
-	
-
 }
