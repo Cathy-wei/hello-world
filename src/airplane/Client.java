@@ -12,7 +12,7 @@ public class Client {
 	private BufferedReader br=new BufferedReader(new InputStreamReader(System.in));//获取控制台命令
 //--------------------主方法，程序入口--------------------//
 	public static void main(String[] args) {
-		new Flight().commandShell();//命令shell
+		new Client().commandShell();//命令shell
 	}
 	private void commandShell() {
 		System.out.println("\n\n=====================================");
@@ -56,14 +56,14 @@ public class Client {
 				}else if(cmd.equals("reserve")) {//处理reserve命令
 					if(flightName!=null)//当航班创建好以后
 						reserveCommand(cmds);//用户预定航班
-				}else if(cmd.equals("cancle")) {
+				}else if(cmd.equals("cancel")) {
 					if(flightName!=null)
 						cancleCommand(cmds);
 				}else if(cmd.equals("list")) {
 					if(flightName!=null)
 						listCommand(cmds);
 				}else if(cmd.equals("exit")) {
-					System.out.println("感谢预订，再见！");
+					System.out.println("感谢使用，再见！");
 					System.exit(0);
 				}else {
 					System.out.println("错误命令！");
@@ -136,7 +136,7 @@ public class Client {
     		for(int i=0;i<bn.length;i++)
     			System.out.println(names[i]+"的预订座位号为："+bn[i]);
     	}else 
-    		System.out.println("当前没有这个顺序的位置了QAQ");
+    		System.out.println("当前没有这么多个相邻的位置了QAQ");
     }	
 //--------------------用户取消预订航班座位--------------------//
     private void cancleCommand(String[] cmds) { 
@@ -164,8 +164,8 @@ public class Client {
 	}
 	Passenger[]Passengerlist=flight.getPassengerList();
 	int flag=0;
-	System.out.println("姓名            预订号            行数           位置 ");
-	System.out.println("------------------------------------");
+	System.out.println("姓名                                    预订号                              行数                                位置 ");
+	System.out.println("-----------------------------------------------------");
 	if(Passengerlist==null||Passengerlist.length<=0)
 		System.out.println("当前没有人预订座位！");
 	else {
@@ -174,9 +174,9 @@ public class Client {
 			if(Passengerlist[b]!=null) {
 				flag=1;
 				System.out.println(formatStr(Passengerlist[b].getName())+
-						formatStr(""+Passengerlist[b].getBookingNumber())+
-						formatStr(""+Passengerlist[b].getRow())+
-						formatStr(""+Passengerlist[b].getSeatPosition()));
+						formatStr(" "+Passengerlist[b].getBookingNumber())+
+						formatStr(" "+Passengerlist[b].getRow())+
+						formatStr(" "+Passengerlist[b].getSeatPosition()));
 			}
 		}
 		if(flag==0)
@@ -185,7 +185,7 @@ public class Client {
 }
 	private String formatStr(String s) {
 		for(int i=0;i<16-s.trim().length();i++)
-			s+="";
+			s+=" ";
 		return s;
 	}
 
