@@ -1,6 +1,7 @@
 package airplane;
 
 import java.io.*;
+import java.util.*;
 
 public class Client {
 	private String flightName=null;//航班名
@@ -43,7 +44,7 @@ public class Client {
 		String cmds[];//用于包存命令，例如>>cmds[0]="create";cmds[1]="flightName";cmds[2]="rows";cmds[3]="rowLength";
 		String cmd;
 		if(cmdString!=null) {
-			cmd=command(cmdString);//分析命令，分离出各个分量
+			cmds=command(cmdString);//分析命令，分离出各个分量
 			if(cmds!=null) {
 				cmd=cmds[0].toLowerCase();//将字符串转换为小写
 				if(cmd.equals("create")) {//处理create命令
@@ -54,7 +55,7 @@ public class Client {
 					}
 				}else if(cmd.equals("reserve")) {//处理reserve命令
 					if(flightName!=null)//当航班创建好以后
-						reserveCommand(cmds);
+						reserveCommand(cmds);//用户预定航班
 				}else if(cmd.equals("cancle")) {
 					if(flightName!=null)
 						cancleCommand(cmds);
@@ -71,26 +72,99 @@ public class Client {
 			}
 		}		
 	}
+//--------------------分隔命令字符串--------------------//
+    private String[] command(String cmdStr) {
+//    	int cc=0;//命令串中分量个数
+    	String[] cmd;
+//    	StringTokenizer st=new String StringTokenizer(cmdStr);
+//    	if((cc=st.countTokens())==0)
+//    		return null;
+//    	for(int i=0;i<cc;i++)
+//    		cmd[i]=st.nextToken();
+    	cmd=cmdStr.split(" ");
+    	return cmd;
+    }
+//------------创建航班-----------//  
+    private int readInt(String valstr) {//把字符串类型转换为整型
+    	int val=0;
+    	try {
+    		val=Integer.parseInt(valstr);
+    	}catch(Exception e) {
+    		val=Integer.MIN_VALUE;
+    	}
+    	return val;
+    }
+//>>>>
+    private void createCommand(String[] cmds) {// 判断命令是否正确
+    	if(cmds.length!=4) {
+    		System.out.println("命令创建错误！");
+    	}
+    	else {
+    		flightName=cmds[1];
+    		row=readInt(cmds[2]);
+    		rowLength=readInt(cmds[3]);
+    		if(row<=0||rowLength<=0) {
+    			System.out.println("创建命令参数错误！");
+    			flightName=null;
+    			row=0;
+    			rowLength=0;
+    		}else {
+    			try {
+    				flight=new Flight(flightName,row,rowLength);//创建航班
+    				System.out.println("航班创建成功！");
+    			}catch(Exception e) {
+    				System.out.println(e);
+    				flight=null;
+    				flightName=null;
+    				row=0;
+    				rowLength=0;
+    			}
+    		}
+    	}	
+    }
+//--------------------用户预订航班座位--------------------//
+    private void reserveCommand(String[] cmds) {
+    	if(cmds.length<=1) {
+    		System.out.println("预定航班错误！reserve error!T_T!");
+    		return;
+    	}
+    	String[]names=new String[cmds.length-1];
+    	for(int i=0;i<names.length;i++)
+    		names[i]=new String (cmds[i+1]);
+    	int[] bn=flight.reserve(names);//处理预订座位
+    	if(bn[0]!=-1) {
+    		for(int i=0;i<bn.length;i++)
+    			System.out.println(names[i]+"的预订座位号为："+bn[i]);
+    	}else 
+    		System.out.println("当前没有这个顺序的位置了QAQ");
+    }	
+//--------------------用户取消预订航班座位--------------------//
+    private void cancleCommand(String[] cmds) { 
+    	if(cmds.length!=2) {
+    		System.out.println("\n取消航班命令格式错误 QAQ");
+    		return;
+    	}
+    	int bookingNumeber=readInt(cmds[i]);
+    	if(bookingNumeber<=0) {
+    		System.out.println("取消航班命令顺序错误 QAQ");
+    		return;
+    	}
+    	boolean state=flight.cancle(bookingNumber);
+    	if(state)
+    		System.out.println("您的座位已取消！");
+    	else
+    		System.out.println("此座位未被预定！");
+	
+    }
+//--------------------显示航班座位预订情况--------------------//
     private void listCommand(String[] cmds) {
 	// TODO 自动生成的方法存根
 	
 }
-	private void cancleCommand(String[] cmds) {
-	// TODO 自动生成的方法存根
+
 	
-}
-	private void reserveCommand(String[] cmds) {
-	// TODO 自动生成的方法存根ss
-	
-}
-	private void createCommand(String[] cmds) {
-	// TODO 自动生成的方法存根
-	
-    }
-//--------------------分隔命令字符串--------------------//
-    private String command(String cmdStr) {
-    	
-    }
+
+
 
 
 }
