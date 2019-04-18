@@ -20,8 +20,11 @@ public class Regexxxx {
 		while(m3.find())
 		System.out.println(m3.group());
 		//（3）将字符串中连续出现的字符压缩成一个。比如aaabbbccccd，压缩后变成abcd。
-		str1=str1.replaceAll("(.)(\\1)*", "$1");//1个或多个与仍以字符相匹配的匹配组
+		str1=str1.replaceAll("(.)(\\1)*", "$1");//1个或多个与任意字符相匹配的匹配组被第一个匹配组相匹配的子串替换
 		System.out.println(str1);
+		//（4）将连续出现的abc用一个abc代替。---选做
+		String str="abcabcabcabcaaaa";
+		System.out.println(str.replaceAll("(abc)(\\1)*", "$1"));
 	}
 
 }
