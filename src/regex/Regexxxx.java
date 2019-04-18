@@ -19,6 +19,9 @@ public class Regexxxx {
 		Matcher m3=p2.matcher(str3);
 		while(m3.find())
 		System.out.println(m3.group());
+		//（3）将字符串中连续出现的字符压缩成一个。比如aaabbbccccd，压缩后变成abcd。
+		str1=str1.replaceAll("(.)(\\1)*", "$1");//1个或多个与仍以字符相匹配的匹配组
+		System.out.println(str1);
 	}
 
 }
