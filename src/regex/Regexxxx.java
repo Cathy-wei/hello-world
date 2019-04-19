@@ -28,10 +28,27 @@ public class Regexxxx {
 		//（5）从控制台输入邮箱地址，验证是否为邮箱地址。
 		//从JOptionPane中输入邮箱地址，验证是否是合法的邮箱。----选做
 		//（6）输入一个字符串，判断该字符串是否以abc结尾。
-		String str4="sadadadaaaaaaabc";
+		String str4="sadadadaaaaaabc";
 		Pattern p3=Pattern.compile(".*(abc)");
 		Matcher m4=p3.matcher(str4);
 		System.out.println(m4.matches());
+		//（7）截取http://地址。在一个网页的源文件中提取静态的http地址。------选做
+		//（8）将一个字符串中的所有整数提取出来，保存在一维数组中。
+		//比如”ae256dd—w348e6”，提取出256,348,6三个整数
+		int[] a=new int[10];
+		String str5="sada211da432daa5a3aa55abc";
+		Pattern p4=Pattern.compile("\\d{1,4}");
+		Matcher m5=p4.matcher(str5);
+		int i=0;
+		while(m5.find()) {
+			int j;
+			j=Integer.parseInt(m5.group());
+			a[i]=j;
+			i++;
+		}
+		for(int ai:a)
+			System.out.print(ai+",");
+
 	}
 
 }
