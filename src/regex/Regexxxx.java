@@ -36,19 +36,26 @@ public class Regexxxx {
 		//（8）将一个字符串中的所有整数提取出来，保存在一维数组中。
 		//比如”ae256dd—w348e6”，提取出256,348,6三个整数
 		int[] a=new int[10];
-		String str5="sada211da432daa5a3aa55abc";
+		String str5="sada211da432daa5a3aa555abc";
 		Pattern p4=Pattern.compile("\\d{1,4}");
 		Matcher m5=p4.matcher(str5);
 		int i=0;
 		while(m5.find()) {
-			int j;
-			j=Integer.parseInt(m5.group());
-			a[i]=j;
+			a[i]=Integer.parseInt(m5.group());
 			i++;
 		}
-		for(int ai:a)
-			System.out.print(ai+",");
-
+		for(int aa=0;aa<i;aa++)
+		System.out.print(a[aa]+",");
+		//（9）文本替换：将字符串中所有的”pupel”替换为”pupil”。
+		String str6="pupelaaaaapupelbbbbpupel000pupel";
+		Pattern p5=Pattern.compile("pupel",Pattern.CASE_INSENSITIVE);
+		Matcher m6=p5.matcher(str6);
+		StringBuffer sb=new StringBuffer();
+		while(m6.find()) {
+			m6.appendReplacement(sb,"pupil");
+		}
+		m6.appendTail(sb);
+		System.out.println("\n"+sb);
 	}
 
 }
