@@ -56,6 +56,17 @@ public class Regexxxx {
 		}
 		m6.appendTail(sb);
 		System.out.println("\n"+sb);
+		//（10）从一个字符串中提取以%cxll=开头，右部是%的字符串（不包含%）。
+//		字符串为：
+//		"%...%CXLL=add1,31,123.12%CXLL=add2,32,124%CXLL=,33,125.12%LL=-121.11"
+		String str7="%...%CXLL=add1,31,123.12%CXLL=add2,32,124%CXLL=,33,125.12%LL=-121.11";
+		Pattern p6=Pattern.compile("%CXLL=.*?(?=%)");
+		Matcher m7=p6.matcher(str7);
+		while(m7.find()) {
+			System.out.print(m7.group()+"   ");
+		}
+		
+
 	}
 
 }
