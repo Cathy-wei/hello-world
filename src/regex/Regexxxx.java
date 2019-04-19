@@ -25,6 +25,13 @@ public class Regexxxx {
 		//（4）将连续出现的abc用一个abc代替。---选做
 		String str="abcabcabcabcaaaa";
 		System.out.println(str.replaceAll("(abc)(\\1)*", "$1"));
+		//（5）从控制台输入邮箱地址，验证是否为邮箱地址。
+		//从JOptionPane中输入邮箱地址，验证是否是合法的邮箱。----选做
+		//（6）输入一个字符串，判断该字符串是否以abc结尾。
+		String str4="sadadadaaaaaaabc";
+		Pattern p3=Pattern.compile(".*(abc)");
+		Matcher m4=p3.matcher(str4);
+		System.out.println(m4.matches());
 	}
 
 }
