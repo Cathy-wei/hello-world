@@ -26,12 +26,12 @@ public class MyTest{
 	
 	public static void main(String[] args) {
 		try {
-			System.out.println(Tool.parseInt("123q"));
+			System.out.println(Tool.parseInt("123"));
 		}catch(MyException e) {
 			e.printStackTrace();
 		}
 		
-			System.out.print(" ");
+			System.out.print(123-100);
 		
 		
 	}
