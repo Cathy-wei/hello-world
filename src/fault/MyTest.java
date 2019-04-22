@@ -6,7 +6,9 @@ class MyException extends Exception{
 		// TODO 自动生成的构造函数存根
 		super(str);
 	}
-	
+	public String getMessage() {
+		return String.format("\"%s\"", Thread.currentThread().getName()+"程序有错:"+super.getMessage());
+	}
 	
 }
 class Tool{
