@@ -26,7 +26,7 @@ public class MyTest{
 	
 	public static void main(String[] args) {
 		try {
-			System.out.println(Tool.parseInt("123"));
+			System.out.println(Tool.parseInt("123p"));
 		}catch(MyException e) {
 			e.printStackTrace();
 		}
