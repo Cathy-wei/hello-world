@@ -15,9 +15,9 @@ class Students{
 		this.age=age;
 	}
 	public String toString() {
-		return "姓名："+this.name+" 年龄："+this.age;
+		return "姓名："+this.name+" 年龄："+this.age+"岁";
 	}
-	public boolean equal(Object o) {
+	public boolean equals(Object o) {
 		if(!(o instanceof Students)) return false;
 		Students s = (Students) o;
 		if((s.age==age) && s.name.equals(name) )
@@ -38,6 +38,7 @@ public class Student2 {
 		map.put(new Students("西西",18), "北京");
 		map.put(new Students("阿花",20), "北京");
 		map.put(new Students("小明",21), "上海");
+		map.put(new Students("小明",21), "北京");
 		System.out.println(map);
 		//entrySet遍历
 		Set<Entry<Students,String>> set = map.entrySet();
@@ -47,6 +48,13 @@ public class Student2 {
 			System.out.println(next.getKey()+" = "+next.getValue());
 		}
 		//keySet遍历
+		Set<Students> ks = map.keySet();
+		Iterator<Students> kit = ks.iterator();
+		while(kit.hasNext()) {
+			Students key = kit.next();
+			String value = map.get(key);
+			System.out.println("key="+key+" value="+value);
+		}
 
 	}
 
