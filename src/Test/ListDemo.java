@@ -10,6 +10,20 @@ public class ListDemo {
 
 		System.out.println();
 	}
+	//¶ÑÕ»
+	LinkedList linkedlist = new LinkedList();
+	public void push(Object o) {
+		linkedlist.addFirst(o);
+	}
+	public Object pop() {
+		return linkedlist.removeFirst();
+	}
+	public Object peek() {
+		return linkedlist.getFirst();
+	}
+	public boolean empty() {
+		return linkedlist.isEmpty();
+	}
 
 	public static void main(String[] args) {
 		Queue<Integer>queue = new LinkedList<Integer>();
@@ -21,6 +35,18 @@ public class ListDemo {
 		for(char c:"apple".toCharArray())
 			qc.offer(c);
 		printQ(qc);
+		//¶ÑÕ»
+		ListDemo l= new ListDemo();
+		l.push("push1");
+		l.push("push2");
+		l.push("push3");
+		System.out.println(l.pop());
+		System.out.println(l.peek());
+		System.out.println(l.pop());
+		System.out.println(l.pop());
+		System.out.println(l.empty());
+	
+		
 
 	}
 
