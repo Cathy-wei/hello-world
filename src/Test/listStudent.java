@@ -31,6 +31,15 @@ class Stu implements Comparable {
 		return result;
 	}
 }
+class comprator implements Comparator<Stu>{
+
+	@Override
+	public int compare(Stu o1, Stu o2) {
+		// TODO 自动生成的方法存根
+		return o1.sno.compareTo(o2.sno);
+	}
+	
+}
 public class listStudent {
 
 	public static void main(String[] args) {
@@ -39,14 +48,20 @@ public class listStudent {
 		array.add(new Stu("11","西西",90));
 		array.add(new Stu("1","小兰",70));
 		array.add(new Stu("31","小蜜",80));
+		Stu s= new Stu("31","小蜜",80);
+//		array.sort();
 		System.out.println(array);
+		System.out.println("按综测升序排序，采用指定比较器排序:");
+		Collections.sort(array);
 		Iterator<Stu> it = array.iterator();
 		while(it.hasNext()) {
 			System.out.println(it.next());
 		}
-		Collections.sort(array);
-		System.out.println("默认比较器：\n"+array);
-//		it.forEachRemaining(s->System.out.println(s));
+		System.out.println("按学生的学号从小到大排序,采用自然排序:");
+		comprator com=new comprator();
+		array.sort(com);
+		Iterator<Stu> itsno = array.iterator();
+		itsno.forEachRemaining(String->System.out.println(String));
 	}
 
 }
